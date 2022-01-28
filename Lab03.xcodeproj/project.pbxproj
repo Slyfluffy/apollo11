@@ -42,7 +42,9 @@
 		C1D4EAE82577F57A002B56E3 /* ground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ground.h; sourceTree = "<group>"; };
 		C1D4EAF02577F58C002B56E3 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		C1D4EAF12577F58C002B56E3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		CE060C6627A3819500A96A83 /* velocity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = velocity.cpp; sourceTree = "<group>"; };
+		CE060C6727A3903B00A96A83 /* thrust.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = thrust.h; sourceTree = "<group>"; };
+		CE060C6927A3971D00A96A83 /* simulator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = simulator.h; sourceTree = "<group>"; };
+		CE060C6A27A397C100A96A83 /* simulator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = simulator.cpp; sourceTree = "<group>"; };
 		CEB2107D27A0633A002E6DF9 /* lander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lander.h; sourceTree = "<group>"; };
 		CEB2107E27A0633A002E6DF9 /* velocity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = velocity.h; sourceTree = "<group>"; };
 		CEB2107F27A0633A002E6DF9 /* lander.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lander.cpp; sourceTree = "<group>"; };
@@ -65,18 +67,20 @@
 			isa = PBXGroup;
 			children = (
 				C1D4EAE22577F575002B56E3 /* glDemo.cpp */,
+				CE060C6927A3971D00A96A83 /* simulator.h */,
+				CE060C6A27A397C100A96A83 /* simulator.cpp */,
 				CEB2107D27A0633A002E6DF9 /* lander.h */,
 				CEB2107F27A0633A002E6DF9 /* lander.cpp */,
 				C1D4EAE82577F57A002B56E3 /* ground.h */,
 				C1D4EAE32577F575002B56E3 /* ground.cpp */,
 				C1D4EAE42577F575002B56E3 /* point.h */,
 				C1D4EAE12577F574002B56E3 /* point.cpp */,
-				C1D4EAE02577F573002B56E3 /* uiDraw.cpp */,
+				CE060C6727A3903B00A96A83 /* thrust.h */,
 				C1D4EAE72577F579002B56E3 /* uiDraw.h */,
-				C1D4EAE52577F576002B56E3 /* uiInteract.cpp */,
+				C1D4EAE02577F573002B56E3 /* uiDraw.cpp */,
 				C1D4EAE62577F578002B56E3 /* uiInteract.h */,
+				C1D4EAE52577F576002B56E3 /* uiInteract.cpp */,
 				CEB2107E27A0633A002E6DF9 /* velocity.h */,
-				CE060C6627A3819500A96A83 /* velocity.cpp */,
 				C1D4EAD42577F487002B56E3 /* Products */,
 				C1D4EAEF2577F58B002B56E3 /* Frameworks */,
 			);
