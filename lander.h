@@ -22,8 +22,9 @@ class Lander
 private:
    //Part of the lander
    float weight;
-   float vPower;
-   float hPower;
+   float angle;
+   bool alive;
+   int fuel;
    
    //Has-a
    Point p;
@@ -32,20 +33,29 @@ private:
 public:
    //Constructors
    Lander();
-   Lander(float vVelocity, float hVelocity, float yPosition);
+   Lander(Velocity v, Point p, float angle);
    
    // Getters
    float getWeight() const { return weight; }
-   float getVPower() const { return vPower; }
-   float getHPower() const { return hPower; }
-   float getTPower() const { return sqrt((vPower * vPower) + (hPower * hPower)); }
-   
-   Point getPoint()       const { return p; }
-   Velocity getVelocity() const { return v; }
+   float getAngle()  const { return angle;  }
+   bool isAlive()    const { return alive;  }
+   int getFuel()     const { return fuel;   }
+   Point getP()      const { return p;      }
+   Velocity getV()   const { return v;      }
    
    // Setters
-   void setVelocity(float dx, float dy) { v.setDx(dx); v.setDy(dy); }
-   void setPoint(float x, float y)      { p.setX(x); p.setY(y);     }
+   void setWeight(float weight) { this->weight = weight; }
+   void setAngle(float angle)   { this->angle = angle;   }
+   void setAlive(bool alive)    { this->alive = alive;   }
+   void setFuel(int fuel)       { this->fuel = fuel;     }
+   void setV(Velocity v)        { this->v = v;           }
+   void setP(Point p)           { this->p = p;           }
+   
+   //special functions
+   void draw();
+   void turnLeft();
+   void turnRight();
+   void subtractFuel();
 };
 
-#endif /* lander_hpp */
+#endif /* lander_h */
