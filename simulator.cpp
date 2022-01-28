@@ -6,53 +6,63 @@
 //
 
 #include "simulator.h"
-#include "uidraw.h"
+#include "uiDraw.h"
 
-Simulator :: Simulator(Point ptUpperRight); {
+Simulator::Simulator(Point ptUpperRight) {
    this->ptUpperRight = ptUpperRight;
-   reset();
+   lander = new Lander(ptUpperRight);
+   ground = new Ground(ptUpperRight);
 }
 
-void Simulator :: reset() {
-   lander = lander(ptUpperRight);
-   ground = ground(ptUpperRight);
-}
-
-void Simulator :: input(Interface ui) {
+void Simulator::input(Interface ui) {
+   if (ui.isSpace())
+      reset();
    
+   Thrust t;
+   t.set(ui);
+   runSimulation(t);
+   display(t);
 }
 
-void Simulator :: runSimulation(Thrust t) {
-   if !(lander.isFlying())
+
+void Simulator::runSimulation(Thrust t) {
+   if (!lander->isFlying())
       return;
    
-   lander.input(t);
+   lander->input(t);
+   lander->coast();
    
-   lander.coast();
-   
-   if (ground.hitGround(lander.getPosition(), 20))
-      lander.crash();
-   else if (ground.onPlatform(lander.getPosition(), 20)) {
-      if (lander.getVelocity().getSpeec() > 4)
-         lander.crash();
+   if (ground->hitGround(lander->getP(), 20))
+      lander->crash();
+   else if (ground->onPlatform(lander->getP(), 20)) {
+      if (lander->getV().getSpeed() > 4)
+         lander->crash();
       else
-         lander.land();
+         lander->land();
    }
 }
 
-void Simulator :: display(Thrust &thrust) {
-   
+void Simulator::display(Thrust t) {
    ogstream gout;
    
+   ground->draw(gout);
+
    // draw the lander and its flames
-   lander.draw(thrust, gout);
-   ground.draw(gout);
+   gout.drawLander(lander->getP()/*position*/, lander->getAngle() /*angle*/);
+   gout.drawLanderFlames(lander->getP(), lander->getAngle(), /*angle*/
+       t.isMain(), t.isCounter(), t.isClock());
 
    // put some text on the screen
-//   gout.setPosition(Point(20.0, 380.0));
-//
-//   // TODO: Line these up somehow ???
-//   gout << "Fuel:      " << 0 << " lbs" << "\n"
-//        << "Altitude:  " << round(ground.getElevation(lander.P())) << " meters\n"
-//        << "Speed:   " << 0 << " m/s\n";
+   gout.setPosition(Point(20.0, 380.0));
+   
+   // TODO: Line these up somehow ???
+   gout << "Fuel:      " << lander->getFuel() << " lbs" << "\n"
+        << "Altitude:  " << round(ground->getElevation(lander->getP())) << " meters\n"
+        << "Speed:   " << 0 << " m/s\n";
+
+   // draw our little stars
+//   for (int i = 0; i < 50; i++) {
+//       pDemo->phase[i]++;
+//       gout.drawStar(pDemo->ptStar[i], pDemo->phase[i]);
+//   }
 }

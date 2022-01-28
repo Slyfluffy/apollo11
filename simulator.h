@@ -9,31 +9,21 @@
 #define simulator_h
 
 #include "lander.h"
-#include "thrust.h"
-#include "point.h"
 #include "ground.h"
-#include "uiInteract.h"
 
 class Simulator {
+private:
    Lander * lander;
    Point ptUpperRight;
    Ground * ground;
    
 public:
-   Simulator(Point & ptUpperRight) {
-      this->ptUpperRight = ptUpperRight;
-      lander = new Lander(ptUpperRight);
-      ground = new Ground(ptUpperRight);
-      reset();
-   }
+   Simulator(Point ptUpperRight);
    
-   void reset() {
-      ground->reset();
-      lander->reset();
-   }
+   void reset() { lander->reset(); ground->reset(); }
    void input(Interface ui);
    void runSimulation(Thrust t);
-   void display(Thrust &thrust);
+   void display(Thrust t);
 };
 
 #endif /* simulator_h */

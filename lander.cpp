@@ -13,13 +13,14 @@
  * APOLLO 11 :: LANDER :: DEFAULT CONSTRUCTOR
  * Constructs Lander class with default values
  ********************************************/
-Lander :: Lander(const Point & ptUpperRight) : ptUpperRight(ptUpperRight) {
+Lander :: Lander(const Point & ptUpperRight) {
+   this->ptUpperRight = ptUpperRight;
    reset();
 }
 
 void Lander :: reset() {
-   p.setX(0);
-   p.setY(100);
+   p.setX(200);
+   p.setY(350);
    
    v.setDx(0);
    v.setDy(0);
@@ -48,11 +49,11 @@ void Lander :: input(Thrust thrust) {
    }
    
    if (thrust.isClock()) {
-      angle = angle += .1;
+      angle = angle -= .1;
       fuel -= 1;
    }
    if (thrust.isCounter()) {
-      angle -= .1;
+      angle += .1;
       fuel -= 1;
    }
    

@@ -4,6 +4,7 @@
  * draw something on the window, and accept simple user input
  **********************************************************************/
 
+#include "simulator.h"
 #include "point.h"
 #include "uiInteract.h"
 #include "uiDraw.h"
@@ -54,44 +55,15 @@ public:
  **************************************/
 void callBack(const Interface* pUI, void* p)
 {
-    ogstream gout;
+   ogstream gout;
+   Thrust t;
 
-    // the first step is to cast the void pointer into a game object. This
-    // is the first step of every single callback function in OpenGL. 
-    Demo* pDemo = (Demo*)p;
+   // the first step is to cast the void pointer into a game object. This
+   // is the first step of every single callback function in OpenGL.
+   Simulator *sim = (Simulator*)p;
 
-    // move the ship around
-    if (pUI->isRight())
-        pDemo->angle -= 0.1;
-    if (pUI->isLeft())
-        pDemo->angle += 0.1;
-    if (pUI->isUp())
-        pDemo->ptLM.addY(-1.0);
-    if (pUI->isDown())
-        pDemo->ptLM.addY(1.0);
-
-    // draw the ground
-    pDemo->ground.draw(gout);
-
-    // draw the lander and its flames
-    gout.drawLander(pDemo->ptLM /*position*/, pDemo->angle /*angle*/);
-    gout.drawLanderFlames(pDemo->ptLM, pDemo->angle, /*angle*/
-        pUI->isDown(), pUI->isLeft(), pUI->isRight());
-
-    // put some text on the screen
-    gout.setPosition(Point(20.0, 380.0));
-    
-    // TODO: Line these up somehow ???
-    gout << "Fuel:      " << 0 << " lbs" << "\n"
-         << "Altitude:  " << round(pDemo->ground.getElevation(pDemo->ptLM)) << " meters\n"
-         << "Speed:   " << 0 << " m/s\n";
-
-    // draw our little stars
-    for (int i = 0; i < 50; i++) {
-        pDemo->phase[i]++;
-        gout.drawStar(pDemo->ptStar[i], pDemo->phase[i]);
-    }
-    
+   // move the ship around
+   sim->input(*pUI);
 }
 
 /*********************************
@@ -117,10 +89,10 @@ int main(int argc, char ** argv)
                  ptUpperRight);
 
    // Initialize the game class
-   Demo demo(ptUpperRight);
+   Simulator sim(ptUpperRight);
 
    // set everything into action
-   ui.run(callBack, &demo);             
+   ui.run(callBack, &sim);
 
    return 0;
 }
