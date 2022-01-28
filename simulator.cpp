@@ -1,6 +1,6 @@
 //
 //  simulator.cpp
-//  Lab03
+//  apollo11
 //
 //  Created by Journey Curtis on 1/27/22.
 //
@@ -8,12 +8,24 @@
 #include "simulator.h"
 #include "uiDraw.h"
 
+/********************************
+ * SIMULATOR :: CONSTRUCTOR
+ * INPUTS  :: Point ptUpperRight
+ * OUTPUTS :: NONE
+ * Constructs the Simulator class
+ *******************************/
 Simulator::Simulator(Point ptUpperRight) {
    this->ptUpperRight = ptUpperRight;
    lander = new Lander(ptUpperRight);
    ground = new Ground(ptUpperRight);
 }
 
+/**********************************
+ * SIMULATOR :: INPUT
+ * INPUTS  :: Interface ui
+ * OUTPUTS :: NONE
+ * Handles input for the simulation
+ *********************************/
 void Simulator::input(Interface ui) {
    if (ui.isSpace())
       reset();
@@ -24,7 +36,12 @@ void Simulator::input(Interface ui) {
    display(t);
 }
 
-
+/****************************
+ * SIMULATOR :: RUNSIMULATION
+ * INPUTS  :: Thrust t
+ * OUTPUTS :: NONE
+ * Runs the simulation
+ ***************************/
 void Simulator::runSimulation(Thrust t) {
    if (!lander->isFlying())
       return;
@@ -42,6 +59,12 @@ void Simulator::runSimulation(Thrust t) {
    }
 }
 
+/**********************************************
+ * SIMULATOR :: DISPLAY
+ * INPUTS  :: Thrust t
+ * OUTPUTS :: NONE
+ * Displays the various parts of the simulation
+ *********************************************/
 void Simulator::display(Thrust t) {
    ogstream gout;
    

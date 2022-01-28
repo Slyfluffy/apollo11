@@ -1,6 +1,6 @@
 //
 //  thrust.h
-//  Lab03
+//  apollo11
 //
 //  Created by Journey Curtis on 1/27/22.
 //
@@ -10,6 +10,12 @@
 
 #include "uiInteract.h"
 
+/*****************************************
+ * APOLLO11 :: THRUST
+ * Thrust component of apollo11. Basically
+ * telling us if it's turning and igniting
+ * thrusters.
+ ****************************************/
 class Thrust {
 private:
    bool mainEngine;

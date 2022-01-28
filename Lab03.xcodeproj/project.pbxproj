@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		C1D4EAE92577F57B002B56E3 /* uiDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D4EAE02577F573002B56E3 /* uiDraw.cpp */; };
 		C1D4EAEA2577F57B002B56E3 /* point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D4EAE12577F574002B56E3 /* point.cpp */; };
-		C1D4EAEB2577F57B002B56E3 /* glDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D4EAE22577F575002B56E3 /* glDemo.cpp */; };
+		C1D4EAEB2577F57B002B56E3 /* driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D4EAE22577F575002B56E3 /* driver.cpp */; };
 		C1D4EAEC2577F57B002B56E3 /* ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D4EAE32577F575002B56E3 /* ground.cpp */; };
 		C1D4EAED2577F57B002B56E3 /* uiInteract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D4EAE52577F576002B56E3 /* uiInteract.cpp */; };
 		C1D4EAF22577F58C002B56E3 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D4EAF02577F58C002B56E3 /* GLUT.framework */; };
@@ -34,7 +34,7 @@
 		C1D4EAD32577F487002B56E3 /* Lab03 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lab03; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1D4EAE02577F573002B56E3 /* uiDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uiDraw.cpp; sourceTree = "<group>"; };
 		C1D4EAE12577F574002B56E3 /* point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = point.cpp; sourceTree = "<group>"; };
-		C1D4EAE22577F575002B56E3 /* glDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glDemo.cpp; sourceTree = "<group>"; };
+		C1D4EAE22577F575002B56E3 /* driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = driver.cpp; sourceTree = "<group>"; };
 		C1D4EAE32577F575002B56E3 /* ground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ground.cpp; sourceTree = "<group>"; };
 		C1D4EAE42577F575002B56E3 /* point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = point.h; sourceTree = "<group>"; };
 		C1D4EAE52577F576002B56E3 /* uiInteract.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uiInteract.cpp; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 		C1D4EACA2577F487002B56E3 = {
 			isa = PBXGroup;
 			children = (
-				C1D4EAE22577F575002B56E3 /* glDemo.cpp */,
+				C1D4EAE22577F575002B56E3 /* driver.cpp */,
 				CEEE4C5727A3C3B900DC6FFD /* simulator.h */,
 				CEEE4C5827A3C3D400DC6FFD /* simulator.cpp */,
 				CEB2107D27A0633A002E6DF9 /* lander.h */,
@@ -166,7 +166,7 @@
 				C1D4EAE92577F57B002B56E3 /* uiDraw.cpp in Sources */,
 				C1D4EAEC2577F57B002B56E3 /* ground.cpp in Sources */,
 				CEEE4C5927A3C3D400DC6FFD /* simulator.cpp in Sources */,
-				C1D4EAEB2577F57B002B56E3 /* glDemo.cpp in Sources */,
+				C1D4EAEB2577F57B002B56E3 /* driver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

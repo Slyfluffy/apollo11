@@ -1,6 +1,6 @@
 //
 //  simulator.h
-//  Lab03
+//  apollo11
 //
 //  Created by Journey Curtis on 1/27/22.
 //
@@ -11,6 +11,11 @@
 #include "lander.h"
 #include "ground.h"
 
+/******************************************
+ * APOLLO11 :: SIMULATOR
+ * Simulator basically runs the program.
+ * It handles input, movement, and display.
+ *****************************************/
 class Simulator {
 private:
    Lander * lander;

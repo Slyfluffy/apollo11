@@ -10,7 +10,7 @@
 #include <iostream>
 
 /*********************************************
- * APOLLO 11 :: LANDER :: DEFAULT CONSTRUCTOR
+ * LANDER :: CONSTRUCTOR
  * Constructs Lander class with default values
  ********************************************/
 Lander :: Lander(const Point & ptUpperRight) {
@@ -18,6 +18,12 @@ Lander :: Lander(const Point & ptUpperRight) {
    reset();
 }
 
+/************************************
+ * LANDER :: RESET
+ * INPUTS  :: NONE
+ * OUTPUTS :: NONE
+ * reset the lander to default values
+ ***********************************/
 void Lander :: reset() {
    p.setX(200);
    p.setY(350);
@@ -32,11 +38,26 @@ void Lander :: reset() {
    flying = true;
 }
 
+
+/************************************
+ * LANDER :: DRAW
+ * INPUTS  :: Thrust t, ogstream gout
+ * OUTPUTS :: NONE
+ * draw the lander and it's flames
+ * when needed.
+ ***********************************/
 void Lander :: draw(Thrust t, ogstream gout) {
    gout.drawLander(p, angle);
    gout.drawLanderFlames(p, angle, t.isMain(), t.isCounter(), t.isClock());
 }
 
+/************************************
+ * LANDER :: INPUT
+ * INPUTS  :: Thrust thrust
+ * OUTPUTS :: NONE
+ * Handle input for lander. It will
+ * adjust angles and fuel accordingly
+ ***********************************/
 void Lander :: input(Thrust thrust) {
    if (fuel == 0)
       return;
