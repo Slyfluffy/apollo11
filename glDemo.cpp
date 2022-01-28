@@ -19,21 +19,30 @@ class Demo
 public:
    Demo(const Point& ptUpperRight) :
           angle(0.0),
-          ptStar(ptUpperRight.getX() - 20.0, ptUpperRight.getY() - 20.0),
           ptLM(ptUpperRight.getX() / 2.0, ptUpperRight.getY() / 2.0),
           ground(ptUpperRight)
    { 
-
-      phase = random(0, 255);
+       // generate 50 phases for 50 stars
+       for (int i = 0; i < 50; i++) {
+           phase[i] = random(0, 255);
+    }
+       // set points for the stars
+       for (int i = 0; i < 50; i++) {
+           // keep trying until the star is in the sky
+           do {
+               ptStar[i] = * new Point(random(0, 400), random(0, 400));
+           } while (ground.getElevation(ptStar[i]) < 1);
+       }
+      
    }
 
    // this is just for test purposes.  Don't make member variables public!
    Point ptLM;           // location of the LM on the screen
    Point ptUpperRight;   // size of the screen
    double angle;         // angle the LM is pointing
-   unsigned char phase;  // phase of the star's blinking
+   unsigned char phase[50];  // phase of the star's blinking
    Ground ground;
-   Point ptStar;
+   Point ptStar[50];
 };
 
 /*************************************
@@ -43,38 +52,46 @@ public:
  * engine will wait until the proper amount of
  * time has passed and put the drawing on the screen.
  **************************************/
-void callBack(const Interface *pUI, void * p)
+void callBack(const Interface* pUI, void* p)
 {
-   ogstream gout;
+    ogstream gout;
 
-   // the first step is to cast the void pointer into a game object. This
-   // is the first step of every single callback function in OpenGL. 
-   Demo * pDemo = (Demo *)p;  
+    // the first step is to cast the void pointer into a game object. This
+    // is the first step of every single callback function in OpenGL. 
+    Demo* pDemo = (Demo*)p;
 
-   // move the ship around
-   if (pUI->isRight())
-      pDemo->angle -= 0.1;
-   if (pUI->isLeft())
-      pDemo->angle += 0.1;
-   if (pUI->isUp())
-      pDemo->ptLM.addY(-1.0);
-   if (pUI->isDown())
-      pDemo->ptLM.addY(1.0);
+    // move the ship around
+    if (pUI->isRight())
+        pDemo->angle -= 0.1;
+    if (pUI->isLeft())
+        pDemo->angle += 0.1;
+    if (pUI->isUp())
+        pDemo->ptLM.addY(-1.0);
+    if (pUI->isDown())
+        pDemo->ptLM.addY(1.0);
 
-   // draw the ground
-   pDemo->ground.draw(gout);
+    // draw the ground
+    pDemo->ground.draw(gout);
 
-   // draw the lander and its flames
-   gout.drawLander(pDemo->ptLM /*position*/, pDemo->angle /*angle*/);
-   gout.drawLanderFlames(pDemo->ptLM, pDemo->angle, /*angle*/
-                    pUI->isDown(), pUI->isLeft(), pUI->isRight());
+    // draw the lander and its flames
+    gout.drawLander(pDemo->ptLM /*position*/, pDemo->angle /*angle*/);
+    gout.drawLanderFlames(pDemo->ptLM, pDemo->angle, /*angle*/
+        pUI->isDown(), pUI->isLeft(), pUI->isRight());
 
-   // put some text on the screen
-   gout.setPosition(Point(30.0, 30.0));
-   gout << "Demo (" << (int)pDemo->ptLM.getX() << ", " << (int)pDemo->ptLM.getY() << ")" << "\n";
+    // put some text on the screen
+    gout.setPosition(Point(20.0, 380.0));
+    
+    // TODO: Line these up somehow ???
+    gout << "Fuel:      " << 0 << " lbs" << "\n"
+         << "Altitude:  " << round(pDemo->ground.getElevation(pDemo->ptLM)) << " meters\n"
+         << "Speed:   " << 0 << " m/s\n";
 
-   // draw our little star
-   gout.drawStar(pDemo->ptStar, pDemo->phase++);
+    // draw our little stars
+    for (int i = 0; i < 50; i++) {
+        pDemo->phase[i]++;
+        gout.drawStar(pDemo->ptStar[i], pDemo->phase[i]);
+    }
+    
 }
 
 /*********************************
