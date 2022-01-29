@@ -18,6 +18,13 @@ Simulator::Simulator(Point ptUpperRight) {
    this->ptUpperRight = ptUpperRight;
    lander = new Lander(ptUpperRight);
    ground = new Ground(ptUpperRight);
+   Ground g = *ground;
+   for (int i = 0; i < 50; i++) {
+       // keep trying until the star is in the sky
+       do {
+           stars[i] = *new Star(*new Point(random(0, 400), random(0, 400)), random(0,255));
+       } while (g.getElevation(stars[i].getPoint()) < 1);
+   }
 }
 
 /**********************************
@@ -30,6 +37,30 @@ void Simulator::input(Interface ui) {
    if (ui.isSpace())
       reset();
    
+   // Movement for the demo
+   Point p = lander->getP();
+
+   if (ui.isUp()) {
+       p.addY(1);
+       lander->setP(p);
+   }
+
+   if (ui.isDown()) {
+       p.addY(-1);
+       lander->setP(p);
+   }
+
+   if (ui.isRight()) {
+       p.addX(1);
+       lander->setP(p);
+   }   
+
+   if (ui.isLeft()) {
+       p.addX(-1);
+       lander->setP(p);
+   }
+       
+
    Thrust t;
    t.set(ui);
    runSimulation(t);
@@ -76,16 +107,27 @@ void Simulator::display(Thrust t) {
        t.isMain(), t.isCounter(), t.isClock());
 
    // put some text on the screen
-   gout.setPosition(Point(20.0, 380.0));
-   
-   // TODO: Line these up somehow ???
-   gout << "Fuel:      " << lander->getFuel() << " lbs" << "\n"
-        << "Altitude:  " << round(ground->getElevation(lander->getP())) << " meters\n"
-        << "Speed:   " << 0 << " m/s\n";
 
-   // draw our little stars
-//   for (int i = 0; i < 50; i++) {
-//       pDemo->phase[i]++;
-//       gout.drawStar(pDemo->ptStar[i], pDemo->phase[i]);
-//   }
+   // Fuel
+   gout.setPosition(Point(20.0, 380.0));
+   gout << "Fuel:";
+   gout.setPosition(Point(70.0, 380.0));
+   gout << lander->getFuel() << " lbs" << "\n";
+
+   // Altitude
+   gout.setPosition(Point(20.0, 362.0));
+   gout << "Altitude:";
+   gout.setPosition(Point(70.0, 362.0));
+   gout << round(ground->getElevation(lander->getP())) << " meters\n";
+
+   // Speed
+   gout.setPosition(Point(20.0, 344.0));
+   gout << "Speed:";
+   gout.setPosition(Point(70.0, 344.0));
+   gout << 0 << " m/s\n";
+
+    // draw our little stars
+   for (int i = 0; i < 50; i++) {
+       stars[i].draw();
+   }
 }
