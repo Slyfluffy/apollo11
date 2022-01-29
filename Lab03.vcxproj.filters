@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="glDemo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -28,6 +25,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="uiInteract.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lander.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="simulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="star.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -42,6 +51,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="uiInteract.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lander.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="simulator.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="thrust.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="velocity.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="star.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

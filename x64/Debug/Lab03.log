@@ -1,2 +1,10 @@
-﻿  glDemo.cpp
-  Lab03.vcxproj -> C:\Users\slush\source\repos\apollo11\x64\Debug\Lab03.exe
+﻿  driver.cpp
+C:\Users\slush\source\repos\apollo11simulator\simulator.h(24,9): error C3646: 'sr': unknown override specifier
+C:\Users\slush\source\repos\apollo11simulator\simulator.h(26,1): error C2143: syntax error: missing ';' before 'public'
+C:\Users\slush\source\repos\apollo11simulator\simulator.h(26,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  simulator.cpp
+C:\Users\slush\source\repos\apollo11simulator\simulator.h(24,9): error C3646: 'sr': unknown override specifier
+C:\Users\slush\source\repos\apollo11simulator\simulator.h(26,1): error C2143: syntax error: missing ';' before 'public'
+C:\Users\slush\source\repos\apollo11simulator\simulator.h(26,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  star.cpp
+  Generating Code...

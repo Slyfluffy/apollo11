@@ -10,6 +10,7 @@
 
 #include "lander.h"
 #include "ground.h"
+#include "star.h"
 
 /******************************************
  * APOLLO11 :: SIMULATOR
@@ -21,6 +22,7 @@ private:
    Lander * lander;
    Point ptUpperRight;
    Ground * ground;
+   Star stars[50];
    
 public:
    Simulator(Point ptUpperRight);
