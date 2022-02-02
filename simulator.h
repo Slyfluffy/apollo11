@@ -22,12 +22,12 @@ private:
    Lander * lander;
    Point ptUpperRight;
    Ground * ground;
-   Star stars[50];
+   Star * stars[80];
    
 public:
    Simulator(Point ptUpperRight);
    
-   void reset() { lander->reset(); ground->reset(); }
+   void reset();
    void input(Interface ui);
    void runSimulation(Thrust t);
    void display(Thrust t);

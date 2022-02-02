@@ -19,12 +19,23 @@ Simulator::Simulator(Point ptUpperRight) {
    lander = new Lander(ptUpperRight);
    ground = new Ground(ptUpperRight);
    Ground g = *ground;
-   for (int i = 0; i < 50; i++) {
-       // keep trying until the star is in the sky
-       do {
-           stars[i] = *new Star(*new Point(random(0, 400), random(0, 400)), random(0,255));
-       } while (g.getElevation(stars[i].getPoint()) < 1);
+   for (int i = 0; i < 80; i++) {
+      stars[i] = new Star(new Point(random(0, 400), random(0, 400)), random(0,255));
+
    }
+}
+/**********************************
+ * SIMULATOR :: RESET
+ * INPUTS  :: NONE
+ * OUTPUTS :: NONE
+ * Resets the simulation
+ *********************************/
+void Simulator::reset() {
+    for (int i = 0; i < 80; i++) {
+        stars[i]->reset();
+    }
+    ground->reset();
+    lander->reset();
 }
 
 /**********************************
@@ -38,7 +49,7 @@ void Simulator::input(Interface ui) {
       reset();
    
    // Movement for the demo
-   Point p = lander->getP();
+   /*Point p = lander->getP();
 
    if (ui.isUp()) {
        p.addY(1);
@@ -58,7 +69,7 @@ void Simulator::input(Interface ui) {
    if (ui.isLeft()) {
        p.addX(-1);
        lander->setP(p);
-   }
+   }*/
        
 
    Thrust t;
@@ -99,6 +110,11 @@ void Simulator::runSimulation(Thrust t) {
 void Simulator::display(Thrust t) {
    ogstream gout;
    
+   // draw our little stars
+   for (int i = 0; i < 80; i++) {
+       stars[i]->draw();
+   }
+
    ground->draw(gout);
 
    // draw the lander and its flames
@@ -125,9 +141,4 @@ void Simulator::display(Thrust t) {
    gout << "Speed:";
    gout.setPosition(Point(70.0, 344.0));
    gout << 0 << " m/s\n";
-
-    // draw our little stars
-   for (int i = 0; i < 50; i++) {
-       stars[i].draw();
-   }
 }

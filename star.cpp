@@ -5,7 +5,7 @@
  * Constructs star class with default values
  ********************************************/
 Star::Star() {
-	p = * new Point();
+	p = new Point();
 	phase = 0;
 }
 
@@ -14,13 +14,13 @@ Star::Star() {
  * Constructs star class with nondefault 
  * values
  ********************************************/
-Star::Star(Point p, char phase) {
+Star::Star(Point* p, char phase) {
 	this->p = p;
 	this->phase = phase;
 }
 
-void Star::reset(int width, int height) {
-	
+void Star::reset() {
+	p = new Point(random(0, 400), random(0, 400));
 }
 
 /************************************
@@ -34,5 +34,5 @@ void Star::draw() {
 	phase++;
 	// draw it
 	ogstream gout;
-	gout.drawStar(p, phase);
+	gout.drawStar(*p, phase);
 }
