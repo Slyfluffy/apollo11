@@ -24,6 +24,8 @@ private:
    Ground * ground;
    Star * stars[80];
    
+   void displayMessage(int selector);
+   
 public:
    Simulator(Point ptUpperRight);
    

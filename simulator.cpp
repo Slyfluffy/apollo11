@@ -47,30 +47,6 @@ void Simulator::reset() {
 void Simulator::input(Interface ui) {
    if (ui.isSpace())
       reset();
-   
-   // Movement for the demo
-   /*Point p = lander->getP();
-
-   if (ui.isUp()) {
-       p.addY(1);
-       lander->setP(p);
-   }
-
-   if (ui.isDown()) {
-       p.addY(-1);
-       lander->setP(p);
-   }
-
-   if (ui.isRight()) {
-       p.addX(1);
-       lander->setP(p);
-   }   
-
-   if (ui.isLeft()) {
-       p.addX(-1);
-       lander->setP(p);
-   }*/
-       
 
    Thrust t;
    t.set(ui);
@@ -85,12 +61,12 @@ void Simulator::input(Interface ui) {
  * Runs the simulation
  ***************************/
 void Simulator::runSimulation(Thrust t) {
-   if (!lander->isFlying())
+   if (lander->isLanded())
       return;
    
    lander->input(t);
    lander->coast();
-   
+
    if (ground->hitGround(lander->getP(), 20))
       lander->crash();
    else if (ground->onPlatform(lander->getP(), 20)) {
@@ -118,12 +94,9 @@ void Simulator::display(Thrust t) {
    ground->draw(gout);
 
    // draw the lander and its flames
-   gout.drawLander(lander->getP()/*position*/, lander->getAngle() /*angle*/);
-   gout.drawLanderFlames(lander->getP(), lander->getAngle(), /*angle*/
-       t.isMain(), t.isCounter(), t.isClock());
+   lander->draw(t);
 
    // put some text on the screen
-
    // Fuel
    gout.setPosition(Point(20.0, 380.0));
    gout << "Fuel:";
@@ -140,5 +113,11 @@ void Simulator::display(Thrust t) {
    gout.setPosition(Point(20.0, 344.0));
    gout << "Speed:";
    gout.setPosition(Point(70.0, 344.0));
-   gout << 0 << " m/s\n";
+   gout << lander->getV().getSpeed() << " m/s\n";
+   
+   gout.setPosition(Point(150, 200));
+   if (lander->isLanded())
+      gout << "Successful Landing.\n";
+   else if (!lander->isAlive())
+      gout << "You have crashed!\n";
 }

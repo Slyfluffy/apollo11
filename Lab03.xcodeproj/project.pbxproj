@@ -16,6 +16,7 @@
 		C1D4EAF32577F58C002B56E3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D4EAF12577F58C002B56E3 /* OpenGL.framework */; };
 		CEB2108027A0633A002E6DF9 /* lander.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB2107F27A0633A002E6DF9 /* lander.cpp */; };
 		CEEE4C5927A3C3D400DC6FFD /* simulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4C5827A3C3D400DC6FFD /* simulator.cpp */; };
+		CEF608EB27ACE85500AE3A69 /* star.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF608E927ACE83D00AE3A69 /* star.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +50,8 @@
 		CEB2107F27A0633A002E6DF9 /* lander.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lander.cpp; sourceTree = "<group>"; };
 		CEEE4C5727A3C3B900DC6FFD /* simulator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = simulator.h; sourceTree = "<group>"; };
 		CEEE4C5827A3C3D400DC6FFD /* simulator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = simulator.cpp; sourceTree = "<group>"; };
+		CEF608E927ACE83D00AE3A69 /* star.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = star.cpp; sourceTree = "<group>"; };
+		CEF608EA27ACE83D00AE3A69 /* star.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = star.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				C1D4EAE22577F575002B56E3 /* driver.cpp */,
+				CEF608EA27ACE83D00AE3A69 /* star.h */,
+				CEF608E927ACE83D00AE3A69 /* star.cpp */,
 				CEEE4C5727A3C3B900DC6FFD /* simulator.h */,
 				CEEE4C5827A3C3D400DC6FFD /* simulator.cpp */,
 				CEB2107D27A0633A002E6DF9 /* lander.h */,
@@ -160,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF608EB27ACE85500AE3A69 /* star.cpp in Sources */,
 				C1D4EAED2577F57B002B56E3 /* uiInteract.cpp in Sources */,
 				CEB2108027A0633A002E6DF9 /* lander.cpp in Sources */,
 				C1D4EAEA2577F57B002B56E3 /* point.cpp in Sources */,

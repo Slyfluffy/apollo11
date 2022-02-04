@@ -25,7 +25,6 @@ class Lander
 private:
    bool alive;
    bool landed;
-   bool flying;
    Point p;
    Velocity v;
    Point ptUpperRight;
@@ -33,8 +32,10 @@ private:
    const float weight = 15103;
    const float vThrust = 45000;
    const float hThrust = 450;
-   const float g = 1.625;
+   const float g = -.1625;
    int fuel;
+   
+   float convertToRadians(float degree) { return (2 * M_PI * (degree / 360)); }
    
 public:
    //Constructors
@@ -47,7 +48,6 @@ public:
    float getAngle()  const { return angle;  }
    bool isAlive()    const { return alive;  }
    bool isLanded()   const { return landed; }
-   bool isFlying()   const { return flying; }
    int getFuel()     const { return fuel;   }
    Point getP()      const { return p;      }
    Velocity getV()   const { return v;      }
@@ -60,11 +60,11 @@ public:
    void setP(Point p)           { this->p = p;           }
    
    //special functions
-   void draw(Thrust t, ogstream gout);
+   void draw(Thrust t);
    void input(Thrust thrust);
-   void coast() { if (alive && flying) { v.addDy(g); } }
-   void land()  { landed = true; flying = false; }
-   void crash() { alive = false; flying = false; }
+   void coast() { if (alive) { v.addDy(g); p.addY(v.getDy()); p.addX(v.getDx()); } }
+   void land()  { landed = true; angle = 0; }
+   void crash() { alive = false; }
 };
 
 #endif /* lander_h */

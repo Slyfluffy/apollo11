@@ -131,7 +131,7 @@ void Ground::draw(ogstream & gout) const
    for (int i = 0; i < (int)ptUpperRight.getX(); i++)
       gout.drawRectangle(Point((double)i, 0.0), 
                          Point((double)(i + 1), ground[i]), 
-                         0.3 /*red*/, 0.2 /*green*/, 0.1 /*blue*/);
+                         .5 /*red*/, .5 /*green*/, .5 /*blue*/);
 
    // draw the landing pad
    gout.drawRectangle(Point((double)iLZ, ground[iLZ]),

@@ -35,7 +35,6 @@ void Lander :: reset() {
    fuel = 3000;
    alive = true;
    landed = false;
-   flying = true;
 }
 
 
@@ -46,9 +45,14 @@ void Lander :: reset() {
  * draw the lander and it's flames
  * when needed.
  ***********************************/
-void Lander :: draw(Thrust t, ogstream gout) {
+void Lander :: draw(Thrust t) {
+   ogstream gout;
    gout.drawLander(p, angle);
-   gout.drawLanderFlames(p, angle, t.isMain(), t.isCounter(), t.isClock());
+   
+   if (isLanded())
+      return;
+   else if (fuel > 0 && isAlive())
+      gout.drawLanderFlames(p, angle, t.isMain(), t.isCounter(), t.isClock());
 }
 
 /************************************
@@ -59,13 +63,15 @@ void Lander :: draw(Thrust t, ogstream gout) {
  * adjust angles and fuel accordingly
  ***********************************/
 void Lander :: input(Thrust thrust) {
-   if (fuel == 0)
+   if (!isAlive())
       return;
    
    if (thrust.isMain()) {
       float power = vThrust / weight * .1;
       v.addDy(cos(angle) * power);
       v.addDx(-sin(angle) * power);
+      p.addX(v.getDx());
+      p.addY(v.getDy());
       fuel -= 10;
    }
    
