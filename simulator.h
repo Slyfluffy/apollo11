@@ -5,7 +5,7 @@
 //  Created by Journey Curtis on 1/27/22.
 //
 
-#ifndef simulator_h
+//#ifndef simulator_h
 #define simulator_h
 
 #include "lander.h"
@@ -35,4 +35,4 @@ public:
    void display(Thrust t);
 };
 
-#endif /* simulator_h */
+//#endif /* simulator_h */

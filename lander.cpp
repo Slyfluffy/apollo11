@@ -19,6 +19,17 @@ Lander :: Lander(const Point & ptUpperRight) {
 }
 
 /************************************
+ * LANDER :: COAST
+ * INPUTS  :: NONE
+ * OUTPUTS :: NONE
+ * updates the position of the lander
+ ***********************************/
+//void Lander::coast() {
+//    if (alive) {
+//        v.addDy(g);
+//}
+
+/************************************
  * LANDER :: RESET
  * INPUTS  :: NONE
  * OUTPUTS :: NONE
@@ -66,22 +77,24 @@ void Lander :: input(Thrust thrust) {
    if (!isAlive())
       return;
    
-   if (thrust.isMain()) {
-      float power = vThrust / weight * .1;
-      v.addDy(cos(angle) * power);
-      v.addDx(-sin(angle) * power);
-      p.addX(v.getDx());
-      p.addY(v.getDy());
-      fuel -= 10;
-   }
-   
-   if (thrust.isClock()) {
-      angle = angle -= .1;
-      fuel -= 1;
-   }
-   if (thrust.isCounter()) {
-      angle += .1;
-      fuel -= 1;
+   if (fuel > 0) {
+       if (thrust.isMain()) {
+           float power = vThrust / weight * .1;
+           v.addDy(cos(angle) * power);
+           v.addDx(-sin(angle) * power);
+           /*p.addX(v.getDx());
+           p.addY(v.getDy());*/
+           fuel -= 10;
+       }
+
+       if (thrust.isClock()) {
+           angle = angle -= .1;
+           fuel -= 1;
+       }
+       if (thrust.isCounter()) {
+           angle += .1;
+           fuel -= 1;
+       }
    }
    
    if (fuel < 0)

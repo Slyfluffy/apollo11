@@ -1,4 +1,4 @@
-﻿  simulator.cpp
-  star.cpp
-  Generating Code...
+﻿  driver.cpp
+C:\Users\slush\source\repos\apollo11\lander.h(18,30): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\slush\source\repos\apollo11\lander.h(37,18): warning C4305: 'initializing': truncation from 'double' to 'const float'
   Lab03.vcxproj -> C:\Users\slush\source\repos\apollo11\x64\Debug\Lab03.exe

@@ -1,3 +1,8 @@
+/***************************************
+* APOLLO 11 SIMULATOR
+* Journey Curtis and Olivia Seymour
+***************************************/
+
 /**********************************************************************
  * GL Demo
  * Just a simple program to demonstrate how to create an Open GL window, 
