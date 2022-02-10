@@ -1,4 +1,5 @@
-﻿  driver.cpp
-C:\Users\slush\source\repos\apollo11\lander.h(18,30): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\slush\source\repos\apollo11\lander.h(37,18): warning C4305: 'initializing': truncation from 'double' to 'const float'
-  Lab03.vcxproj -> C:\Users\slush\source\repos\apollo11\x64\Debug\Lab03.exe
+﻿  simulator.cpp
+C:\Users\slush\source\repos\apollo11simulator\lander.h(35,18): warning C4305: 'initializing': truncation from 'double' to 'const float'
+C:\Users\slush\source\repos\apollo11simulator\lander.h(38,60): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\slush\source\repos\apollo11simulator\ground.h(36,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Lab03.vcxproj -> C:\Users\slush\source\repos\apollo11simulator\x64\Debug\Lab03.exe

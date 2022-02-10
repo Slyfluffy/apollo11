@@ -15,6 +15,8 @@
 #include "uiDraw.h"
 #include "thrust.h"
 
+const double M_PI = 3.14159265358979323846;
+
 /****************************************************
  * APOLLO 11 :: LANDER
  * Lander class. contains everything required for the
@@ -23,8 +25,6 @@
 class Lander
 {
 private:
-   bool alive;
-   bool landed;
    Point p;
    Velocity v;
    Point ptUpperRight;
@@ -46,8 +46,6 @@ public:
    // Getters
    float getWeight() const { return weight; }
    float getAngle()  const { return angle;  }
-   bool isAlive()    const { return alive;  }
-   bool isLanded()   const { return landed; }
    int getFuel()     const { return fuel;   }
    Point getP()      const { return p;      }
    Velocity getV()   const { return v;      }
@@ -61,9 +59,7 @@ public:
    //special functions
    void draw(Thrust t);
    void input(Thrust thrust);
-   void coast() { if (alive) { v.addDy(g); p.addY(v.getDy()); p.addX(v.getDx()); } }
-   void land()  { landed = true; angle = 0; }
-   void crash() { alive = false; }
+   void coast() { v.addDy(g); p.addY(v.getDy()); p.addX(v.getDx()); }
 };
 
 #endif /* lander_h */

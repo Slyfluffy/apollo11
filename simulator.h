@@ -33,6 +33,7 @@ public:
    void input(Interface ui);
    void runSimulation(Thrust t);
    void display(Thrust t);
+   void displayEndMessage(bool crashed);
 };
 
 //#endif /* simulator_h */

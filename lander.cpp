@@ -33,8 +33,6 @@ void Lander :: reset() {
    
    angle = 0;
    fuel = 3000;
-   alive = true;
-   landed = false;
 }
 
 
@@ -48,10 +46,8 @@ void Lander :: reset() {
 void Lander :: draw(Thrust t) {
    ogstream gout;
    gout.drawLander(p, angle);
-   
-   if (isLanded())
-      return;
-   else if (fuel > 0 && isAlive())
+  
+   if (fuel > 0)
       gout.drawLanderFlames(p, angle, t.isMain(), t.isCounter(), t.isClock());
 }
 
@@ -63,8 +59,6 @@ void Lander :: draw(Thrust t) {
  * adjust angles and fuel accordingly
  ***********************************/
 void Lander :: input(Thrust thrust) {
-   if (!isAlive())
-      return;
    
    if (fuel > 0) {
        if (thrust.isMain()) {

@@ -48,9 +48,32 @@ void Simulator::input(Interface ui) {
       reset();
 
    Thrust t;
-   t.set(ui);
-   runSimulation(t);
    display(t);
+
+   // Check to see if crashed then check if lander can land.
+   //  Check if we hit the ground
+   if (ground->hitGround(lander->getP(), 20)) {
+       displayEndMessage(true);
+   }
+   else if (ground->onPlatform(lander->getP(), 20)) {
+       // If we are going too fast when we hit the platform,
+       // we still crash
+       if (lander->getV().getSpeed() >= 4) {
+           displayEndMessage(true);
+       }
+       else {
+           displayEndMessage(false);
+           lander->setAngle(0);
+       }
+   }
+   else {
+       t.set(ui);
+       runSimulation(t);
+       display(t);
+   }
+
+   
+   
 }
 
 /****************************
@@ -60,18 +83,11 @@ void Simulator::input(Interface ui) {
  * Runs the simulation
  ***************************/
 void Simulator::runSimulation(Thrust t) {
-   lander->input(t);
-   lander->coast();
-
-   // Check to see if crashed then check if lander can land.
-   if (ground->hitGround(lander->getP(), 20))
-      lander->crash();
-   else if (ground->onPlatform(lander->getP(), 20)) {
-      if (lander->getV().getSpeed() < 4)
-         lander->land();
-      else
-         lander->crash();
-   }
+       // Take input
+       lander->input(t);
+       // Update velocity and position
+       lander->coast();
+   
 }
 
 /**********************************************
@@ -110,11 +126,21 @@ void Simulator::display(Thrust t) {
    gout << "Speed:";
    gout.setPosition(Point(70.0, 344.0));
    gout << lander->getV().getSpeed() << " m/s\n";
-   
-   //End simulation message
-   gout.setPosition(Point(150, 200));
-   if (lander->isLanded())
-      gout << "Successful Landing.\n";
-   else if (!lander->isAlive())
-      gout << "You have crashed!\n";
+
+}
+
+/**********************************************
+ * SIMULATOR :: DISPLAYENDMESSAGE
+ * INPUTS    :: bool crashed
+ * OUTPUTS   :: NONE
+ * Displays the end simulation message
+ *********************************************/
+void Simulator::displayEndMessage(bool crashed) {
+    //End simulation message
+    ogstream gout;
+    gout.setPosition(Point(150, 200));
+    if (crashed == false)
+        gout << "Successful Landing.\n";
+    else
+        gout << "You have crashed!\n";
 }

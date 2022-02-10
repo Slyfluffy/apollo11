@@ -29,6 +29,12 @@ public:
    bool isClock()   const { return clockwise;        }
    bool isCounter() const { return counterClockwise; }
    
+   /*void set(bool mainEngine, bool clockwise, bool counterClockwise) {
+       this->mainEngine = mainEngine;
+       this->clockwise = clockwise;
+       this->counterClockwise = counterClockwise;
+   }*/
+
    void set(Interface ui) {
       mainEngine = ui.isUp();
       clockwise = ui.isRight();
