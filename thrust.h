@@ -24,11 +24,9 @@ private:
    
 public:
    Thrust() { mainEngine = false; clockwise = false; counterClockwise = false; }
-   void rotation();
-   void mainEngineThrust();
    
-   bool isMain()  const   { return mainEngine;       }
-   bool isClock() const   { return clockwise;        }
+   bool isMain()    const { return mainEngine;       }
+   bool isClock()   const { return clockwise;        }
    bool isCounter() const { return counterClockwise; }
    
    void set(Interface ui) {

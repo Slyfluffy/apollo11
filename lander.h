@@ -15,8 +15,6 @@
 #include "uiDraw.h"
 #include "thrust.h"
 
-const float M_PI = 3.14159265;
-
 /****************************************************
  * APOLLO 11 :: LANDER
  * Lander class. contains everything required for the
@@ -56,7 +54,6 @@ public:
    
    // Setters
    void setAngle(float angle)   { this->angle = angle;   }
-   void setAlive(bool alive)    { this->alive = alive;   }
    void setFuel(int fuel)       { this->fuel = fuel;     }
    void setV(Velocity v)        { this->v = v;           }
    void setP(Point p)           { this->p = p;           }

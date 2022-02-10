@@ -32,8 +32,13 @@ public:
    // determine how high the Point is off the ground
    double getElevation(const Point & pt) const
    {
-      if (pt.getX() >= 0.0 && pt.getX() < ptUpperRight.getX())
-         return pt.getY() - ground[(int)pt.getX()];
+      if (pt.getX() >= 0.0 && pt.getX() < ptUpperRight.getX()) {
+         float point = pt.getY() - ground[(int)pt.getX()];
+         if (point > 0)
+            return point;
+         else
+            return 0;
+      }
       else
          return 0.0;
    }

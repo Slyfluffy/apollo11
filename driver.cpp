@@ -1,13 +1,11 @@
 /***************************************
 * APOLLO 11 SIMULATOR
 * Journey Curtis and Olivia Seymour
+*
+* Simulator for the Apollo 11 mission.
+* Use arrow keys to rotate and apply
+* thrusters. Space to reset.
 ***************************************/
-
-/**********************************************************************
- * GL Demo
- * Just a simple program to demonstrate how to create an Open GL window, 
- * draw something on the window, and accept simple user input
- **********************************************************************/
 
 #include "simulator.h"
 #include "point.h"
@@ -15,41 +13,6 @@
 #include "uiDraw.h"
 #include "ground.h"
 using namespace std;
-
-/*************************************************************************
- * Demo
- * Test structure to capture the LM that will move around the screen
- *************************************************************************/
-class Demo
-{
-public:
-   Demo(const Point& ptUpperRight) :
-          angle(0.0),
-          ptLM(ptUpperRight.getX() / 2.0, ptUpperRight.getY() / 2.0),
-          ground(ptUpperRight)
-   { 
-       // generate 50 phases for 50 stars
-       for (int i = 0; i < 50; i++) {
-           phase[i] = random(0, 255);
-    }
-       // set points for the stars
-       for (int i = 0; i < 50; i++) {
-           // keep trying until the star is in the sky
-           do {
-               ptStar[i] = * new Point(random(0, 400), random(0, 400));
-           } while (ground.getElevation(ptStar[i]) < 1);
-       }
-      
-   }
-
-   // this is just for test purposes.  Don't make member variables public!
-   Point ptLM;           // location of the LM on the screen
-   Point ptUpperRight;   // size of the screen
-   double angle;         // angle the LM is pointing
-   unsigned char phase[50];  // phase of the star's blinking
-   Ground ground;
-   Point ptStar[50];
-};
 
 /*************************************
  * All the interesting work happens here, when

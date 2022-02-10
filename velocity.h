@@ -20,13 +20,13 @@ public:
    Velocity(float dx, float dy) { this->dx = dx; this->dy = dy; }
    
    //Getters
-   float getDx() const { return dx; }
-   float getDy() const { return dy; }
+   float getDx()    const { return dx; }
+   float getDy()    const { return dy; }
    float getSpeed() const { return sqrt((dx * dx) + (dy * dy)); }
    
    //Setters
-   void setDx(float dx)         { this->dx = dx; }
-   void setDy(float dy)         { this->dy = dy; }
+   void setDx(float dx) { this->dx = dx; }
+   void setDy(float dy) { this->dy = dy; }
    
    //Adders
    void addDx(float dx) { this->dx += dx; }

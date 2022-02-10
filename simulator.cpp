@@ -8,40 +8,39 @@
 #include "simulator.h"
 #include "uiDraw.h"
 
-/********************************
+/*********************************
  * SIMULATOR :: CONSTRUCTOR
- * INPUTS  :: Point ptUpperRight
- * OUTPUTS :: NONE
+ * INPUTS    :: Point ptUpperRight
+ * OUTPUTS   :: NONE
  * Constructs the Simulator class
- *******************************/
+ ********************************/
 Simulator::Simulator(Point ptUpperRight) {
    this->ptUpperRight = ptUpperRight;
    lander = new Lander(ptUpperRight);
    ground = new Ground(ptUpperRight);
    Ground g = *ground;
-   for (int i = 0; i < 80; i++) {
+   for (int i = 0; i < 80; i++)
       stars[i] = new Star(new Point(random(0, 400), random(0, 400)), random(0,255));
-
-   }
 }
-/**********************************
+
+/***********************
  * SIMULATOR :: RESET
- * INPUTS  :: NONE
- * OUTPUTS :: NONE
+ * INPUTS    :: NONE
+ * OUTPUTS   :: NONE
  * Resets the simulation
- *********************************/
+ **********************/
 void Simulator::reset() {
-    for (int i = 0; i < 80; i++) {
+    for (int i = 0; i < 80; i++)
         stars[i]->reset();
-    }
+
     ground->reset();
     lander->reset();
 }
 
 /**********************************
  * SIMULATOR :: INPUT
- * INPUTS  :: Interface ui
- * OUTPUTS :: NONE
+ * INPUTS    :: Interface ui
+ * OUTPUTS   :: NONE
  * Handles input for the simulation
  *********************************/
 void Simulator::input(Interface ui) {
@@ -56,40 +55,37 @@ void Simulator::input(Interface ui) {
 
 /****************************
  * SIMULATOR :: RUNSIMULATION
- * INPUTS  :: Thrust t
- * OUTPUTS :: NONE
+ * INPUTS    :: Thrust t
+ * OUTPUTS   :: NONE
  * Runs the simulation
  ***************************/
 void Simulator::runSimulation(Thrust t) {
-   if (lander->isLanded())
-      return;
-   
    lander->input(t);
    lander->coast();
 
+   // Check to see if crashed then check if lander can land.
    if (ground->hitGround(lander->getP(), 20))
       lander->crash();
    else if (ground->onPlatform(lander->getP(), 20)) {
-      if (lander->getV().getSpeed() > 4)
-         lander->crash();
-      else
+      if (lander->getV().getSpeed() < 4)
          lander->land();
+      else
+         lander->crash();
    }
 }
 
 /**********************************************
  * SIMULATOR :: DISPLAY
- * INPUTS  :: Thrust t
- * OUTPUTS :: NONE
+ * INPUTS    :: Thrust t
+ * OUTPUTS   :: NONE
  * Displays the various parts of the simulation
  *********************************************/
 void Simulator::display(Thrust t) {
    ogstream gout;
    
    // draw our little stars
-   for (int i = 0; i < 80; i++) {
+   for (int i = 0; i < 80; i++)
        stars[i]->draw();
-   }
 
    ground->draw(gout);
 
@@ -115,6 +111,7 @@ void Simulator::display(Thrust t) {
    gout.setPosition(Point(70.0, 344.0));
    gout << lander->getV().getSpeed() << " m/s\n";
    
+   //End simulation message
    gout.setPosition(Point(150, 200));
    if (lander->isLanded())
       gout << "Successful Landing.\n";

@@ -6,28 +6,17 @@
 //
 
 #include "lander.h"
-
 #include <iostream>
 
 /*********************************************
  * LANDER :: CONSTRUCTOR
+ * INPUTS :: ptUpperRight
  * Constructs Lander class with default values
  ********************************************/
 Lander :: Lander(const Point & ptUpperRight) {
    this->ptUpperRight = ptUpperRight;
    reset();
 }
-
-/************************************
- * LANDER :: COAST
- * INPUTS  :: NONE
- * OUTPUTS :: NONE
- * updates the position of the lander
- ***********************************/
-//void Lander::coast() {
-//    if (alive) {
-//        v.addDy(g);
-//}
 
 /************************************
  * LANDER :: RESET
@@ -50,7 +39,7 @@ void Lander :: reset() {
 
 
 /************************************
- * LANDER :: DRAW
+ * LANDER  :: DRAW
  * INPUTS  :: Thrust t, ogstream gout
  * OUTPUTS :: NONE
  * draw the lander and it's flames
@@ -67,7 +56,7 @@ void Lander :: draw(Thrust t) {
 }
 
 /************************************
- * LANDER :: INPUT
+ * LANDER  :: INPUT
  * INPUTS  :: Thrust thrust
  * OUTPUTS :: NONE
  * Handle input for lander. It will

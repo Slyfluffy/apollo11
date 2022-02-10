@@ -3,11 +3,11 @@
 #include "uiDraw.h"
 #include "ground.h"
 
-/****************************************************
+/**************************************************
  * APOLLO 11 :: STAR
  * Star class. contains everything required for the
  * star to function
- ***************************************************/
+ *************************************************/
 class Star
 {
 private:
