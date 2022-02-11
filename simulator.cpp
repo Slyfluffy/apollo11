@@ -50,30 +50,25 @@ void Simulator::input(Interface ui) {
    Thrust t;
    display(t);
 
-   // Check to see if crashed then check if lander can land.
-   //  Check if we hit the ground
-   if (ground->hitGround(lander->getP(), 20)) {
+   //  Check if we hit the ground. If we did, we crashed!
+   if (ground->hitGround(lander->getP(), 20))
        displayEndMessage(true);
-   }
+   
+   // Are we close to the landing platform?
    else if (ground->onPlatform(lander->getP(), 20)) {
-       // If we are going too fast when we hit the platform,
-       // we still crash
-       if (lander->getV().getSpeed() >= 4) {
-           displayEndMessage(true);
-       }
-       else {
-           displayEndMessage(false);
-           lander->setAngle(0);
-       }
+       // Land if under 4 m/s. Otherwise crash!
+      if (lander->getV().getSpeed() < 4) {
+         displayEndMessage(false);
+         lander->setAngle(0);
+      }
+      else
+         displayEndMessage(true);
    }
    else {
        t.set(ui);
        runSimulation(t);
        display(t);
    }
-
-   
-   
 }
 
 /****************************
@@ -87,7 +82,6 @@ void Simulator::runSimulation(Thrust t) {
        lander->input(t);
        // Update velocity and position
        lander->coast();
-   
 }
 
 /**********************************************
@@ -136,11 +130,11 @@ void Simulator::display(Thrust t) {
  * Displays the end simulation message
  *********************************************/
 void Simulator::displayEndMessage(bool crashed) {
-    //End simulation message
-    ogstream gout;
-    gout.setPosition(Point(150, 200));
-    if (crashed == false)
-        gout << "Successful Landing.\n";
-    else
-        gout << "You have crashed!\n";
+   ogstream gout;
+   gout.setPosition(Point(150, 200));
+   
+   if (crashed)
+      gout << "You have crashed!\n";
+   else
+      gout << "Successful Landing.\n";
 }

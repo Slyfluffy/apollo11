@@ -15,8 +15,6 @@
 #include "uiDraw.h"
 #include "thrust.h"
 
-const double M_PI = 3.14159265358979323846;
-
 /****************************************************
  * APOLLO 11 :: LANDER
  * Lander class. contains everything required for the
